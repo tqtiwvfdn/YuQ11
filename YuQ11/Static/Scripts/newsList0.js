@@ -1,0 +1,1 @@
+﻿[{newsID:'2',newsTitle:'信息学院 软件学院第九届田径运动会规程',newsDateTime:'2015/04/07 19:01',userNickName:'黎健成'},{newsID:'4',newsTitle:'信息学院 软件学院第九届田径运动会规程 附表',newsDateTime:'2015/04/09 23:41',userNickName:'黎健成'},{newsID:'29',newsTitle:'信息学院、软件学院第九届田径运动会赛程安排',newsDateTime:'2015/04/10 01:48',userNickName:'黎健成'}]

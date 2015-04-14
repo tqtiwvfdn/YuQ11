@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="editNews.aspx.cs" Inherits="YuQ11.Static.editNews" %>

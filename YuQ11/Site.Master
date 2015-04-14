@@ -1,0 +1,299 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="YuQ11.SiteMaster" %>
+
+<!DOCTYPE html>
+<html lang="zh">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta content="minimal-ui" name="viewport" />
+    <meta content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta content="no" name="apple-mobile-web-app-capable" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <title><%: Page.Title %> - 高校运动会内容发布系统</title>
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+    <webopt:BundleReference runat="server" Path="~/Content/css" />
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+</head>
+<body>
+    <script>
+        function refreshYuQ11() {
+            window.history.go();
+        }
+        function getCookie(name) {
+            try {
+                return unescape(document.cookie.match(new RegExp(name + '=([^;]+)'))[1]);
+            } catch (ex) {
+                if (location.href.indexOf('<%=ResolveUrl("~/Account/")%>') < 0) {
+                    location.href = '<%=ResolveUrl("Account/Login")%>';
+                }
+            }
+        }
+    </script>
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+            <Scripts>
+                <%--Framework Scripts--%>
+                <asp:ScriptReference Name="MsAjaxBundle" />
+                <asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Name="bootstrap" />
+                <asp:ScriptReference Name="respond" />
+                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+                <asp:ScriptReference Name="WebFormsBundle" />
+                <%--Site Scripts--%>
+            </Scripts>
+        </asp:ScriptManager>
+        <div class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand navbar-brand-logo" runat="server" href="~/">
+                        运动会内容发布
+                    </a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav" id="UserNavBar" runat="server">
+                        <li><a runat="server" href="~/">主页</a></li>
+                        <li><a runat="server" href="~/Contact">联系方式</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav" id="LeadersNavBar" runat="server" visible="false">
+                        <li><a runat="server" href="~/Leaders/">体委中心</a></li>
+                        <li><a runat="server" href="~/Contact">联系方式</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav" id="AdminNavBar" runat="server" visible="false">
+                        <li><a runat="server" href="~/YuQ11Admin/">管理中心</a></li>
+                        <li><a runat="server" href="~/YuQ11Admin/UserManagement">用户管理</a></li>
+                        <li><a runat="server" href="~/YuQ11Admin/MatchManageMent">赛事管理</a></li>
+                        <li><a runat="server" href="~/YuQ11Admin/NewsManageMent">新闻管理</a></li>
+                    </ul>
+                    <asp:LoginView runat="server" ViewStateMode="Disabled">
+                        <AnonymousTemplate>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a runat="server" href="~/Account/Register">注册</a></li>
+                                <li><a runat="server" href="~/Account/Login">登录</a></li>
+                            </ul>
+                        </AnonymousTemplate>
+                        <LoggedInTemplate>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                                        <span id="yuQ11UserNickName"></span><span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a id="currentUserName" href="javascript:;"></a></li>
+                                        <li><a runat="server" href="~/Account/Manage">账号管理</a></li>
+                                        <li class="divider"></li>
+                                        <li>
+                                            <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="注销" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </LoggedInTemplate>
+                    </asp:LoginView>
+                </div>
+            </div>
+        </div>
+        <div class="container body-content">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+            <hr />
+            <footer>
+                <p>&copy; <%: DateTime.Now.Year %> - 高校运动会内容发布系统</p>
+            </footer>
+        </div>
+    </form>
+    <div class="bg-div"></div>
+    <div class="bg-div-2"></div>
+    <div class="backdrop" id="backdrop">
+        <div class='loader loader--audioWave'></div>
+    </div>
+    <a class="btn-scroll-top btn-scroll-bottom" id="btnScrollTop" href="javascript:;" title="返回顶部">
+        <i></i>
+        <i></i>
+    </a>
+    <script>
+        jQuery.extend({
+            //检查必须填写部分
+            checkFormRequired: function ($checkForm) {
+                var $requiredParams = $('[required="required"]', $checkForm);
+                for (var i = 0, $elem; !!($elem = $($requiredParams[i])).length; i++) {
+                    $elem.prev().children('.error').remove();
+                    if (!($.trim($elem.val()))) {
+                        $('html,body').animate({ scrollTop: $elem.offset().top - 80 }, 1000);
+                        $elem.next().css('visibility', 'visible');
+                        $elem.focus();
+                        $elem.change(function () {
+                            $elem.next().css('visibility', 'hidden');
+                        });
+                        return false;
+                    }
+                }
+                return true;
+            },
+            checkFormRegex: function ($checkForm) {
+                var $requiredParams = $('[data-regex]', $checkForm);
+                for (var i = 0, $elem; !!($elem = $($requiredParams[i])).length; i++) {
+                    $elem.prev().children('.error').remove();
+                    if (!(new RegExp($elem.attr('data-regex'))).test($.trim($elem.val()))) {
+                        $('html,body').animate({ scrollTop: $elem.offset().top - 80 }, 1000);
+                        $elem.next().css('visibility', 'visible');
+                        $elem.focus();
+                        $elem.change(function () {
+                            $elem.next().css('visibility', 'hidden');
+                        });
+                        return false;
+                    }
+                }
+                return true;
+            },
+            resetFormData: function ($targetForm) {
+                $(":input", $targetForm).not(":button, :submit, :reset").val("").removeAttr("checked").remove("selected");
+            },
+            ajaxFormModule: function (option) {
+                ajaxForm(option.$srcBtn || $(), option.$srcForm || $(), option.method, option.extraData, option.errorTips, option.targetUrl, option.successFunc, option.checkFail, option.isContainImg, option.isCheckRegex, option.ajaxFailInner);
+            },
+            stringToObject: function (str) {
+                return (!!str ? eval('(' + str.replace(/[\r\n]/g, '') + ')') : {});
+            },
+            iScrollTo: function ($elem) {
+                $('html,body').animate({ scrollTop: $elem.offset().top - 50 },1000);
+            }
+        });
+        jQuery.fn.extend({
+            toSerialize: function () {
+                var traditional = [];
+                $(":input", $(this)).not(":button, :submit, :reset").each(function () {
+                    traditional[traditional.length] = {
+                        name: this.name || this.id,
+                        value: this.value,
+                    }
+                });
+                return jQuery.param(traditional);
+            },
+        });
+        //自定义Stringbuilder类
+        function StringBuilder() {
+            this.data = new Array();
+        }
+        StringBuilder.prototype.append = function () {
+            this.data.push(arguments[0]);
+        }
+        StringBuilder.prototype.join = function (separator) {
+            return this.data.join(separator || '');
+        }
+        StringBuilder.prototype.toString = function () {
+            return this.join();
+        }
+        StringBuilder.prototype.clear = function () {
+            this.data.splice(0, this.data.length);
+        }
+
+        $(function () {
+            $('#backdrop').hide();
+            $('#yuQ11UserNickName').text(decodeURI(escape(getCookie("yuQ11UserNickName"))));
+            $('#currentUserName').text(getCookie("yuQ11UserName"));
+        });
+        var $backdrop = $('#backdrop');
+        function ajaxFail(jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR, textStatus, errorThrown);
+        }
+        function ajaxForm($srcBtn, $srcForm, method, extraData, errorTips, targetUrl, successFunc, checkFail, isContainImg, isCheckRegex, $showErrorElem, isHideBackDrop) {
+            $srcBtn = $srcBtn || $();
+            $srcForm = $srcForm || $();
+            if (($.checkFormRequired($srcForm) && (!isCheckRegex || (!!isCheckRegex && $.checkFormRegex($srcForm))))) {
+                //必填的部分已经全部填完
+                var dropBack = setTimeout(function () {
+                    if (!isHideBackDrop) {
+                        $backdrop.fadeIn(200);
+                    }
+                }, 200), ajaxOver = function () {
+                    $srcBtn.removeAttr('disabled');
+                    $backdrop.fadeOut(100);
+                    clearTimeout(dropBack);
+                };
+                $srcBtn.attr('disabled', 'disabled');
+                if (isContainImg === true) {
+                    //包括图片上传
+                    $srcForm.ajaxSubmit({
+                        url: targetUrl,
+                        type: method || 'POST',
+                        success: function (data) {
+                            successFunc(data);
+                            ajaxOver();
+                        },
+                        error: function () {
+                            ajaxFail(jqXHR, textStatus + $srcBtn[0].name, errorThrown);
+                            ajaxOver();
+                        },
+                    });
+                }
+                else {
+                    //仅文字
+                    $.ajax({
+                        cache: true,
+                        type: method || 'POST',
+                        contentType: "application/x-www-form-urlencoded; charset=utf-8",
+                        url: targetUrl,
+                        data: $srcForm.toSerialize().trim().replace(/\+{1,}/g, '%20').replace(/\'/g, "\\'") + extraData,
+                    }).done(function (data) {
+                        successFunc(data);
+                        ajaxOver();
+                    }).fail(function (jqXHR, textStatus, errorThrown) {
+                        if (!$showErrorElem) {
+                            ajaxFail(jqXHR, textStatus, errorThrown);
+                        } else {
+                            switch (textStatus.toLowerCase()) {
+                                case 'error':
+                                    textStatus = '错误';
+                                    break;
+                                default:
+                                    textStatus = '失败';
+                            }
+                            switch (errorThrown.toLowerCase()) {
+                                case 'not found':
+                                    errorThrown = '找不到文件';
+                                    break;
+                                case 'internal server error':
+                                    errorThrown = '系统内部错误';
+                                    break;
+                                default:
+                                    errorThrown = errorThrown;
+                            }
+                            $showErrorElem.text(textStatus + '：' + errorThrown).css('visibility', 'visible');
+                            $('html,body').animate({ scrollTop: $showErrorElem.offset().top - 80 }, 1000);
+                        }
+                        ajaxOver();
+                    });
+                }
+            } else {
+                if ($.isFunction(checkFail)) {
+                    checkFail();
+                }
+            }
+        }
+
+        $(function () {
+            var t, $btnScrollTop = $('#btnScrollTop'), $footer = $('footer');
+            $(window).scroll(function () {
+                t = document.documentElement.scrollTop || document.body.scrollTop;
+                t > this.outerHeight - 500 ? $btnScrollTop.removeClass('btn-scroll-bottom') : $btnScrollTop.addClass('btn-scroll-bottom');
+            });
+            $btnScrollTop.click(function () {
+                $('html,body').animate({ scrollTop: -$footer.offset().top }, 1000);
+            });
+        });
+    </script>
+</body>
+</html>

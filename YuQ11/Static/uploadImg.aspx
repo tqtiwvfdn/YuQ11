@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="uploadImg.aspx.cs" Inherits="YuQ11.Static.uploadImg" %>

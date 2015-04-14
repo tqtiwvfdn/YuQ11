@@ -1,0 +1,253 @@
+﻿/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+    padding-bottom: 20px;
+    -webkit-tap-highlight-color: transparent; /*iPhone去除点击时的阴影*/
+    -webkit-appearance: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-attachment:fixed;
+    background-size: 100% auto;
+    -ms-touch-action:pan-y pan-x;
+}
+
+input, select, textarea {
+    -webkit-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+}
+
+.btn-scroll-top {
+    z-index: 1040;
+    position: fixed;
+    bottom: 2.5em;
+    right: 2.5em;
+    background-color: rgba(83, 190, 83, 0.5);
+    font-size: 1rem;
+    height: 5em;
+    width: 5em;
+    border-radius: 50%;
+    box-shadow: 2px 5px 13px rgba(83, 190, 83, 0.5);
+    cursor: pointer;
+    transition: bottom linear .5s;
+    -webkit-transform: translateZ(0);
+    transform:translateZ(0);
+    -ms-transform:translateZ(0);
+}
+
+.btn-scroll-bottom {
+    bottom: -5em;
+}
+
+.btn-scroll-top:hover {
+    -webkit-animation: scrollBarMove 1s linear infinite;
+    animation: scrollBarMove 1s linear infinite;
+}
+
+@-webkit-keyframes scrollBarMove {
+    50% {
+        bottom: 3em;
+    }
+}
+
+@keyframes scrollBarMove {
+    50% {
+        bottom: 3em;
+    }
+}
+
+.btn-scroll-top > i {
+    display: block;
+    font-size: 1em;
+    height: 0;
+    width: 0;
+    margin: 1.2em auto 0 auto;
+    border-top: 0;
+    border-left: 1.625em solid transparent;
+    border-right: 1.625em solid transparent;
+    border-bottom: 2.5em solid;
+    color: #FFF;
+}
+
+    .btn-scroll-top > i:nth-child(2) {
+        margin: -2em auto 0 auto;
+        border-top: 0;
+        border-left: 1.3em solid transparent;
+        border-right: 1.3em solid transparent;
+        border-bottom: 2em solid;
+        color: rgba(83, 190, 83, 0.5);
+    }
+
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.tab-pane {
+    margin-top: -1px;
+}
+/* Set widths on the form inputs since otherwise they're 100% wide */
+
+/* Responsive: Portrait tablets and up */
+@media screen and (max-width:768px) {
+    .pull-responsive {
+        float: none !important;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .jumbotron {
+        margin-top: 20px;
+    }
+
+    .body-content {
+        padding: 0;
+    }
+
+    .gutter-top {
+        margin-top: 10px;
+    }
+}
+
+@media screen and (min-width:960px){
+    body{
+            padding-top: 50px;
+
+    }
+    .bg-div, .bg-div-2 {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: 100%;
+        z-index: -2;
+    }
+    .bg-div {
+        background-image: url(../Images/0.jpg);
+        background-position: top center;
+        background-size: 100% 100%;
+        -webkit-animation: changePic 240s ease infinite alternate;
+    }
+
+    .bg-div-2 {
+        background-image: linear-gradient(170deg,rgba(255,255,255, .9), rgba(255,255,255, .7) 50%, transparent);
+        z-index:-1;
+    }
+
+    @-webkit-keyframes changePic {
+        20% {
+            background-image: url(../Images/0.jpg);
+        }
+
+        40% {
+            background-image: url(../Images/1.jpg);
+        }
+
+        60% {
+            background-image: url(../Images/2.jpg);
+        }
+
+        80% {
+            background-image: url(../Images/3.jpg);
+        }
+
+        100% {
+            background-image: url(../Images/4.jpg);
+        }
+    }
+}
+
+
+.backdrop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    background-color: #000;
+    height: 100%;
+    width: 100%;
+    z-index: 10000;
+    opacity: .5;
+    filter: alpha(opacity=50);
+}
+
+.loader--audioWave {
+    width: 3em;
+    height: 100%;
+    background: linear-gradient(#BBB, #BBB) 0 50%, linear-gradient(#BBB,#BBB) 0.625em 50%, linear-gradient(#BBB,#BBB) 1.25em 50%, linear-gradient(#BBB,#BBB) 1.875em 50%, linear-gradient(#BBB,#BBB) 2.5em 50%;
+    background-repeat: no-repeat;
+    background-size: 0.5em 0.25em, 0.5em 0.25em, 0.5em 0.25em, 0.5em 0.25em, 0.5em 0.25em;
+    font-size: 8rem;
+    -webkit-animation: audioWave 1.5s linear infinite;
+    animation: audioWave 1.5s linear infinite;
+    margin: 0 auto;
+}
+
+@-webkit-keyframes audioWave {
+    25% {
+        background-size: .5em 1.5em, 0.5em 0.25em, 0.5em 0.25em, 0.5em 0.25em, 0.5em 0.25em;
+    }
+
+    37.5% {
+        background-size: 0.5em 0.25em, .5em 1.5em, 0.5em 0.25em, 0.5em 0.25em, 0.5em 0.25em;
+    }
+
+    50% {
+        background-size: 0.5em 0.25em, 0.5em 0.25em, .5em 1.5em, 0.5em 0.25em, 0.5em 0.25em;
+    }
+
+    62.5% {
+        background-size: 0.5em 0.25em, 0.5em 0.25em, 0.5em 0.25em, .5em 1.5em, 0.5em 0.25em;
+    }
+
+    75% {
+        background-size: 0.5em 0.25em, 0.5em 0.25em, 0.5em 0.25em, 0.5em 0.25em, .5em 1.5em;
+    }
+}
+
+@keyframes audioWave {
+    25% {
+        background: linear-gradient(#666, #666) 0 50%, linear-gradient(#BBB, #BBB) 0.625em 50%, linear-gradient(#BBB, #BBB) 1.25em 50%, linear-gradient(#BBB, #BBB) 1.875em 50%, linear-gradient(#BBB, #BBB) 2.5em 50%;
+        background-size: 0.5em 2em, 0.5em 0.25em, 0.5em 0.25em, 0.5em 0.25em, 0.5em 0.25em;
+    }
+
+    37.5% {
+        background: linear-gradient(#BBB, #BBB) 0 50%, linear-gradient(#666, #666) 0.625em 50%, linear-gradient(#BBB, #BBB) 1.25em 50%, linear-gradient(#BBB, #BBB) 1.875em 50%, linear-gradient(#BBB, #BBB) 2.5em 50%;
+        background-size: 0.5em 0.25em, 0.5em 2em, 0.5em 0.25em, 0.5em 0.25em, 0.5em 0.25em;
+    }
+
+    50% {
+        background: linear-gradient(#BBB, #BBB) 0 50%, linear-gradient(#BBB, #BBB) 0.625em 50%, linear-gradient(#666, #666) 1.25em 50%, linear-gradient(#BBB, #BBB) 1.875em 50%, linear-gradient(#BBB, #BBB) 2.5em 50%;
+        background-size: 0.5em 0.25em, 0.5em 0.25em, 0.5em 2em, 0.5em 0.25em, 0.5em 0.25em;
+    }
+
+    62.5% {
+        background: linear-gradient(#BBB, #BBB) 0 50%, linear-gradient(#BBB, #BBB) 0.625em 50%, linear-gradient(#BBB, #BBB) 1.25em 50%, linear-gradient(#666, #666) 1.875em 50%, linear-gradient(#BBB, #BBB) 2.5em 50%;
+        background-size: 0.5em 0.25em, 0.5em 0.25em, 0.5em 0.25em, 0.5em 2em, 0.5em 0.25em;
+    }
+
+    75% {
+        background: linear-gradient(#BBB, #BBB) 0 50%, linear-gradient(#BBB, #BBB) 0.625em 50%, linear-gradient(#BBB, #BBB) 1.25em 50%, linear-gradient(#BBB, #BBB) 1.875em 50%, linear-gradient(#666, #666) 2.5em 50%;
+        background-size: 0.5em 0.25em, 0.5em 0.25em, 0.5em 0.25em, 0.5em 0.25em, 0.5em 2em;
+    }
+}
+
+
+/*logo*/
+.navbar-brand-logo {
+    margin:5px 10px;
+    padding-left: 60px;
+    background-image: url(../Images/logo.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+@media all and (min-width:798px){
+    .navbar-brand-logo{
+        margin:0;
+    }
+}

@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="wrtieCollegeAndClassList.aspx.cs" Inherits="YuQ11.Static.wrtieCollegeAndClassList" %>
